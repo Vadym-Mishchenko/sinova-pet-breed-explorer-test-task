@@ -5,11 +5,11 @@ import { getBreedById } from '@/lib/api/getBreedById';
 import Link from 'next/link';
 
 interface IProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export default async function BreedDetailsPage({ params }: IProps) {
-  const { id } = params;
+  const { id } = await params;
   const breed = (await getBreedById(id)) as Breed | null;
 
   if (!breed) notFound();
