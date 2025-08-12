@@ -9,7 +9,7 @@ interface IProps {
 }
 
 export default async function BreedDetailsPage({ params }: IProps) {
-  const { id } = await params;
+  const { id } = params;
   const breed = (await getBreedById(id)) as Breed | null;
 
   if (!breed) notFound();
