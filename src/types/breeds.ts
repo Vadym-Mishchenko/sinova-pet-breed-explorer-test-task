@@ -5,45 +5,56 @@ export type ApiImage = {
   height?: number;
 };
 
-export type CatApiBreed = {
+export interface CatApiBreed {
+  type: 'cat';
   id: string;
   name: string;
-  temperament?: string;
-  life_span?: string;
-  origin?: string;
   description?: string;
+  weight?: { metric: string };
   adaptability?: number;
   affection_level?: number;
-  alt_names?: string;
-  cfa_url?: string;
   child_friendly?: number;
-  country_code?: string;
-  country_codes?: string;
+  cat_friendly?: number;
   dog_friendly?: number;
   energy_level?: number;
-  experimental?: number;
   grooming?: number;
-  hairless?: number;
   health_issues?: number;
-  hypoallergenic?: number;
-  image?: ApiImage;
-};
-
-export type DogApiBreed = {
-  id: number;
-  name: string;
+  intelligence?: number;
+  shedding_level?: number;
+  social_needs?: number;
+  stranger_friendly?: number;
+  vocalisation?: number;
+  hairless?: boolean;
+  hypoallergenic?: boolean;
+  lap?: boolean;
+  indoor?: boolean;
+  experimental?: boolean;
+  natural?: boolean;
+  rare?: boolean;
+  rex?: boolean;
+  suppressed_tail?: boolean;
+  short_legs?: boolean;
   temperament?: string;
+  origin?: string;
   life_span?: string;
+  images?: string[];
+  image?: { url: string };
+}
+
+export interface DogApiBreed {
+  type: 'dog';
+  id: string | number;
+  name: string;
+  weight?: { metric: string };
+  height?: { metric: string };
+  life_span?: string;
+  temperament?: string;
   origin?: string;
   bred_for?: string;
   breed_group?: string;
-  height?: {
-    imperial?: string;
-    metric?: string;
-  };
-  reference_image_id?: string;
-  image?: ApiImage;
-};
+  images?: string[];
+  image?: { url: string };
+}
 
 export type DogBreed = DogApiBreed & { type: 'dog' };
 export type CatBreed = CatApiBreed & { type: 'cat' };
