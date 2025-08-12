@@ -19,7 +19,11 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
-    <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    <body
+      className={`bg-gradient-to-b from-gray-100 to-gray-200 ${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      {children}
+    </body>
   </html>
 );
 
