@@ -10,6 +10,12 @@ const CAT_IMAGE_SEARCH_URL = 'https://api.thecatapi.com/v1/images/search?limit=1
 
 type ImageSearchResponse = { url: string }[];
 
+type ImageSearchItem = {
+  id: string;
+  url: string;
+  breeds: DogApiBreed[] | CatApiBreed[];
+};
+
 const fetchBreedImage = async (
   apiKey: string,
   url: string,
@@ -48,3 +54,16 @@ export const fetchDogBreeds = () =>
 
 export const fetchCatBreeds = () =>
   fetchBreeds<CatApiBreed>(CAT_API_URL, CAT_API_KEY, CAT_IMAGE_SEARCH_URL, 'cat');
+
+export const fetchBreedImages = async (
+  apiKey: string,
+  breedId: string | number,
+  limit = 4,
+): Promise<string[]> => {
+  const url = `https://api.thedogapi.com/v1/images/search?breed_id=${breedId}&limit=${limit}`;
+  const res = await fetch(url, { headers: { 'x-api-key': apiKey } });
+  if (!res.ok) return [];
+  const data: ImageSearchItem[] = await res.json();
+
+  return data.map((item) => item.url);
+};

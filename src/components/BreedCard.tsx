@@ -8,9 +8,10 @@ import { FaCat, FaDog } from 'react-icons/fa';
 
 type IProps = {
   breed: Breed;
+  priority?: boolean;
 };
 
-const BreedCardComponent = ({ breed }: IProps) => {
+const BreedCardComponent = ({ breed, priority }: IProps) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +38,7 @@ const BreedCardComponent = ({ breed }: IProps) => {
             fill
             sizes="320px"
             style={{ objectFit: 'cover' }}
-            priority={false}
+            priority={priority}
             className="rounded-xl transition-transform duration-500 ease-in-out group-hover:scale-105"
           />
         )}
