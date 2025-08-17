@@ -1,14 +1,19 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Breed } from '@/types/breeds';
+import { BackButton } from '@/components';
 import { getBreedById } from '@/lib/api/getBreedById';
-import Link from 'next/link';
+import { Breed } from '@/types/breeds';
 
 interface IProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function BreedDetailsPage({ params }: IProps) {
+export const metadata = {
+  title: 'Breed Details',
+  description: 'Detailed information about the selected pet breed.',
+};
+
+const BreedDetailsPage = async ({ params }: IProps) => {
   const { id } = await params;
   const breed = (await getBreedById(id)) as Breed | null;
 
@@ -17,18 +22,7 @@ export default async function BreedDetailsPage({ params }: IProps) {
   return (
     <main className="max-w-3xl mx-auto p-8">
       <div className="flex items-center mb-4">
-        <Link href="/" className="mr-3 p-1 rounded hover:bg-gray-200 transition">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-700 dark:text-gray-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </Link>
+        <BackButton />
         <h1 className="text-3xl font-bold">{breed.name}</h1>
       </div>
 
@@ -191,4 +185,6 @@ export default async function BreedDetailsPage({ params }: IProps) {
       ) : null}
     </main>
   );
-}
+};
+
+export default BreedDetailsPage;

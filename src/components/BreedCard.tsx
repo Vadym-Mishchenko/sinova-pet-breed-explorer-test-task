@@ -70,4 +70,5 @@ const BreedCardComponent = ({ breed, priority }: IProps) => {
   );
 };
 
-export const BreedCard = React.memo(BreedCardComponent);
+const BreedCard = React.memo(BreedCardComponent);
+export default BreedCard;

@@ -62,7 +62,9 @@ export const fetchBreedImages = async (
 ): Promise<string[]> => {
   const url = `https://api.thedogapi.com/v1/images/search?breed_id=${breedId}&limit=${limit}`;
   const res = await fetch(url, { headers: { 'x-api-key': apiKey } });
+
   if (!res.ok) return [];
+
   const data: ImageSearchItem[] = await res.json();
 
   return data.map((item) => item.url);

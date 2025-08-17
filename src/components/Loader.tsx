@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Loader.module.css';
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <div className={styles.spinner}>
       <div>D</div>
@@ -31,3 +31,5 @@ export const Loader = () => {
     </div>
   );
 };
+
+export default Loader;

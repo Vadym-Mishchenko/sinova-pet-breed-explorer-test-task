@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { default as NavigationLoader } from '@/components/NavigationLoader';
+import { LoaderProvider } from '@/components/LoaderContext';
+import { Suspense } from 'react';
 import './globals.css';
 
 const geistSans = Geist({
@@ -22,7 +25,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body
       className={`min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 ${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      {children}
+      <LoaderProvider>
+        <NavigationLoader />
+        <Suspense fallback={<NavigationLoader />}>{children}</Suspense>
+      </LoaderProvider>
     </body>
   </html>
 );
